@@ -3,7 +3,34 @@ SmartToolsApp::Application.routes.draw do
   resources :page
    
   get 'home'=>'pages#home'
-  
+
+
+  resources :videos
+
+  resources :contests do
+    get "serve", :on => :member
+    resources :videos do
+      get 'videos', on: :collection
+    end
+  end
+
+  resources :contests
+
+  get    'login'   => 'sessions#new'
+  post   'login'   => 'sessions#create'
+  get 'logout'  => 'sessions#destroy'
+
+  get 'static_pages/home'
+  get 'static_pages/about'
+
+  get 'convert' => 'videos#convert'
+  resources :photos do
+    get "serve", :on => :member
+  end
+  resources :photos
+  resources :users
+  root :to => 'static_pages#home'
+
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

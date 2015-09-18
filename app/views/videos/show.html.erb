@@ -1,0 +1,47 @@
+<%= jwplayer_assets %>
+
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @video.name %>
+</p>
+
+<p>
+  <strong>Lastname:</strong>
+  <%= @video.lastname %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @video.email %>
+</p>
+
+<p>
+  <strong>Message:</strong>
+  <%= @video.message %>
+</p>
+
+<p>
+  <strong>Converted:</strong>
+  <%= @video.converted %>
+</p>
+
+<p>
+  <strong>Contest:</strong>
+  <%= @video.contest_id %>
+</p>
+
+<p>
+  <strong>Video:</strong>
+  <%= @video.video %>
+</p>
+
+<p>
+  <strong>Player:</strong>
+  <%= jwplayer({file: @video.video, width: 500, height: 200}) %>
+</p>
+
+
+<%= link_to 'Edit', edit_contest_video_path(@contest, @video) %> |
+<%= link_to 'Back', contest_path(@contest) %>

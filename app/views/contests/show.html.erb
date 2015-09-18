@@ -1,0 +1,75 @@
+<%= jwplayer_assets %>
+
+<p id="notice">
+	<%= notice %>
+</p>
+
+<p>
+	<strong>Name:</strong>
+	<%= @contest.name %>
+</p>
+
+<p>
+	<strong>Url:</strong>
+	<%= @contest.url %>
+</p>
+
+<p>
+	<strong>Startdate:</strong>
+	<%= @contest.startdate %>
+</p>
+
+<p>
+	<strong>Enddate:</strong>
+	<%= @contest.enddate %>
+</p>
+
+<td> <%= image_tag serve_contest_path(@contest) %> </td
+
+<p>
+	<strong>Description:</strong>
+	<%= @contest.description %>
+</p>
+
+<% if @contest.videos.any? %>
+<h3>Videos(<%= @contest.videos.count %>)</h3>
+<table style="height: 100%">
+	<thead>
+		<tr>
+			<th>Name</th>
+			<th>Lastname</th>
+			<th>Email</th>
+			<th>Message</th>
+			<th>Converted</th>
+			<th>Contest</th>
+
+			<th>Player</th>
+			<th colspan="3"></th>
+		</tr>
+	</thead>
+
+	<tbody>
+		<% @contest.videos.each do |video| %>
+		<tr>
+			<td><%= video.name %></td>
+			<td><%= video.lastname %></td>
+			<td><%= video.email %></td>
+			<td><%= video.message %></td>
+			<td><%= video.converted %></td>
+			<td><%= video.contest_id %></td>
+			<td><%= video.video %></td>
+
+			<td><%= link_to 'Show', [@contest,video] %></td>
+			<td><%= link_to 'Edit', edit_contest_video_path(@contest, video) %></td>
+			<td><%= link_to 'Destroy', [@contest, video], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+		</tr>
+		<% end %>
+	</tbody>
+</table>
+<% end %>
+<%= link_to 'New Video', new_contest_video_path(@contest) %>
+<br>
+
+<%= link_to 'Edit', edit_contest_path(@contest) %> |
+<%= link_to 'Back', contests_path %>
+

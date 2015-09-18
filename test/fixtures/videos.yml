@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  lastname: MyString
+  email: MyString
+  message: MyString
+  converted: false
+  contest_id: 1
+  video: 
+
+two:
+  name: MyString
+  lastname: MyString
+  email: MyString
+  message: MyString
+  converted: false
+  contest_id: 1
+  video: 

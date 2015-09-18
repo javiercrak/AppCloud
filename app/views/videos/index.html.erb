@@ -1,0 +1,40 @@
+
+<h1>Listing videos</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Lastname</th>
+      <th>Email</th>
+      <th>Message</th>
+      <th>Converted</th>
+      <th>Contest</th>
+      <th>Video</th>
+      <th>Player</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @contest.videos.each do |video| %>
+      <tr>
+        <td><%= video.name %></td>
+        <td><%= video.lastname %></td>
+        <td><%= video.email %></td>
+        <td><%= video.message %></td>
+        <td><%= video.converted %></td>
+        <td><%= video.contest_id %></td>
+        <td><%= video.video %></td>
+        <td><%= jwplayer({width: 200, height: 200, file: video.video}) %></td>
+        <td><%= link_to 'Show', [@contest, video] %></td>
+        <td><%= link_to 'Edit', edit_contest_video_path(@contest, video) %></td>
+        <td><%= link_to 'Destroy', video, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Video', new_contest_video_path(@contest) %>
