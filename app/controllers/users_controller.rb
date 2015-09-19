@@ -1,11 +1,10 @@
 
 class UsersController < ApplicationController
-
+  load_and_authorize_resource
   before_action :set_user, only: [:show, :edit, :update, :destroy]
   before_action :logged_in_user, only: [:edit, :update]
-  before_action :correct_user,   only: [:edit, :update]
-  before_action :user_params,  only: [:edit, :update, :create]
-  load_and_authorize_resource
+  #before_action :correct_user,   only: [:edit, :update]
+  before_action :clean_error_message
   # GET /users
   # GET /users.json
   def index
@@ -20,6 +19,7 @@ class UsersController < ApplicationController
 
   # GET /users/new
   def new
+
     @user = User.new
   end
 
@@ -30,7 +30,8 @@ class UsersController < ApplicationController
   # POST /users
   # POST /users.json
   def create
-    @user = User.new(params[:user].permit!(:username, :name, :lastname, :email, :password, :password_confirmation,:roles))
+   # user_params.permit!
+    #@user = User.new(params[:user].permit!)
 
     if @user.save
       log_in @user
@@ -88,7 +89,10 @@ class UsersController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def user_params
-    #params.require(:user).permit!(:username, :name, :lastname, :email, :password, :password_confirmation,:roles)
+    params.require(:user).permit!
   end
 
+  def clean_error_message
+    flash.clear()
+  end
 end

@@ -1,5 +1,5 @@
 <h1 class="title">Listing contests</h1>
-
+<%if @contests %>
 <table class="posted">
 	<thead>
 		<tr>
@@ -22,15 +22,22 @@
 			<td><%= contest.enddate %></td>
 			<td><%= contest.description %></td>
 			<td><%= contest.user_id %></td>
-			<td> <%= image_tag serve_contest_path(contest) %> </td>
+			<td> <%= image_tag preview_contest_path(contest) %> </td>
+
 			<td><%= link_to 'Show', contest %></td>
+
+          <% if can? :edit, contest %>
 			<td><%= link_to 'Edit', edit_contest_path(contest) %></td>
+          <% end %>
+          <% if can? :destroy, contest %>
 			<td><%= link_to 'Destroy', contest, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <% end %>
 		</tr>
 		<% end %>
 	</tbody>
 </table>
-
+<%end%>
 <br>
-
+<% if can? :create, Contest %>
 <%= link_to 'New Contest', new_contest_path %>
+<%end%>

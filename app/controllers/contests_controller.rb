@@ -1,10 +1,14 @@
 class ContestsController < ApplicationController
+  load_and_authorize_resource
+  #load_and_authorize_resource :through => :contest
   before_action :set_contest, only: [:show, :edit, :update, :destroy]
 
   # GET /contests
   # GET /contests.json
   def index
-    @contests = Contest.all
+
+      @contests = Contest.all
+
   end
 
   # GET /contests/1
@@ -69,7 +73,7 @@ class ContestsController < ApplicationController
     end
   end
 
-  def serve
+  def preview
     @contest = Contest.find(params[:id])
     send_data(@contest.binary_data, :type => @contest.content_type, :filename => @contest.filename, :disposition => "inline")
   end
